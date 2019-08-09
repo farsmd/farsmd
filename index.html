@@ -1,0 +1,26 @@
+
+<head>
+<script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<div id="result"><!-- filled by jQuery Ajax --></div>
+<input type="text" id="user_id" />
+<input type="button" id="getUser" value="Get Details"/>
+
+<script>
+var load = 'loaded';
+var ok = 'Ok';
+
+$(document).ready(function(){
+  $( "#result" ).text(load);
+  $('#user_id').keydown(function(){
+    $( "#result" ).text("oK");
+    var user_id = $('#user_id').val();
+    $.post("srv.php",
+    {user_id: user_id},
+    function(data,status){
+      $( "#result" ).append("  result:" , data);
+    });
+  });
+});
+</script>
